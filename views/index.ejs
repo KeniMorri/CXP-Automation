@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+    <title>Automation</title>
+</head>
+<body>
+	<button id='Login' type="button"><h2>Login</h2></button>
+	<button id='Scan' type="button"><h2>Scan</h2></button>
+	<button id='Debug1' type="button"><h2>D1</h2></button>
+	<button id='Debug2' type="button"><h2>D2</h2></button>
+	<button id='Debug3' type="button"><h2>D3</h2></button>
+	<button id='Debug4' type="button"><h2>D4</h2></button>
+	<button id='Pass' type="button"><h2>Passenger</h2></button>
+	<button id='Pilot' type="button"><h2>Pilot</h2></button>
+	<button id='CheckList' type="button"><h2>Check List</h2></button>
+    <button id='CheckFlight' type="button"><h2>Check Flight</h2></button>
+	<br/>
+	<button id='step1' type="button"><h2>Step 1</h2></button>
+	<button id='step2' type="button"><h2>Step 2</h2></button>
+	<button id='step3' type="button"><h2>Step 3</h2></button>
+	<br/>
+	<button id='setupYVR' type="button"><h2>Setup YVR</h2></button>
+	<button id='setupYYC' type="button"><h2>Setup YYC</h2></button>
+	<br/>
+	<button id='setupYYZ' type="button"><h2>Setup YYZ</h2></button>
+	<button id='nextFlight' type="button"><h2>Next Flight</h2></button>
+	<br/>
+	<button id='setupPilot' type="button"><h2>Setup Pilot</h2></button>
+	<button id='nextPilotFlight' type="button"><h2>Next Pilot</h2></button>
+	<br/>
+	<button id='skipPilotFlight' type="button"><h2>Skip Pilot</h2></button>
+	<br/>
+	<button id='StartDiff' type="button"><h2>Start Diff Check</h2></button>
+	<button id='NextDiff' type="button"><h2>Next Diff</h2></button>
+	<br/>
+	<button id='saveFlight' type="button"><h2>Save Flight</h2></button>
+	<button id='skipDiff' type="button"><h2>Skip Diff</h2></button>
+	<br/>
+	<button id='fillBob' type="button"><h2>Fill bob</h2></button>
+	<button id='fillMeal' type="button"><h2>Fill meal</h2></button>
+	
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var sockets = io.connect('localhost:8080');
+	
+	$('#Login').click(function() {
+        sockets.emit('Login', window.location.href, "");
+      })
+	$('#Scan').click(function() {
+		sockets.emit('Scan', window.location.href, "");
+	})
+	$('#Debug1').click(function() {
+		sockets.emit('debug1', window.location.href, "");
+	})
+	$('#Debug2').click(function() {
+		sockets.emit('debug2', window.location.href, "");
+	})
+	$('#Debug3').click(function() {
+		sockets.emit('debug3', window.location.href, "");
+	})
+	$('#Debug4').click(function() {
+		sockets.emit('debug4', window.location.href, "");
+	})
+	$('#step1').click(function() {
+		sockets.emit('step1', window.location.href, "");
+	})
+	$('#step2').click(function() {
+		sockets.emit('step2', window.location.href, "");
+	})
+	$('#step3').click(function() {
+		sockets.emit('step3', window.location.href, "");
+	})
+	$('#setupYVR').click(function() {
+		sockets.emit('setupYVR', window.location.href, "");
+	})
+	$('#setupYYC').click(function() {
+		sockets.emit('setupYYC', window.location.href, "");
+	})
+	$('#setupYYZ').click(function() {
+		sockets.emit('setupYYZ', window.location.href, "");
+	})
+	$('#nextFlight').click(function() {
+		sockets.emit('NextFlight', window.location.href, "");
+	})
+	$('#setupPilot').click(function() {
+		sockets.emit('setupPilot', window.location.href, "");
+	})
+	$('#StartDiff').click(function() {
+		sockets.emit('startDiff', window.location.href, "");
+	})
+	$('#NextDiff').click(function() {
+		sockets.emit('nextDiff', window.location.href, "");
+	})
+	$('#saveFlight').click(function() {
+		sockets.emit('saveFlight', window.location.href, "");
+	})
+	$('#skipDiff').click(function() {
+		sockets.emit('skipDiff', window.location.href, "");
+	})
+	$('#fillBob').click(function() {
+		sockets.emit('fillBob', window.location.href, "");
+	})
+	$('#fillMeal').click(function() {
+		sockets.emit('fillMeal', window.location.href, "");
+	})
+	$('#nextPilotFlight').click(function() {
+		sockets.emit('NextPilotFlight', window.location.href, "");
+	})
+	$('#skipPilotFlight').click(function() {
+		sockets.emit('skipPilotFlight', window.location.href, "");
+	})
+	$('#Pass').click(function() {
+		sockets.emit('pass', window.location.href, "");
+	})
+	$('#Pilot').click(function() {
+		sockets.emit('pilot', window.location.href, "");
+	})
+	$('#CheckList').click(function() {
+        sockets.emit('CheckList', window.location.href, "");
+      })
+	$('#CheckFlight').click(function() {
+		sockets.emit('CheckFlight', window.location.href, "");
+	})
+		
+    sockets.on('fav', function(val) {
+	
+    })
+    sockets.on('unfav', function(val) {
+	
+    })
+</script>
+</body>
+</html>

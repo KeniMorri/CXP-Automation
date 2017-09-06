@@ -3,6 +3,7 @@ PassengerFiles
 PilotCrewFiles
 CREWOUT
 PASSENGERS
+private
 
 # Logs
 logs
@@ -52,3 +53,4 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
+*.lnk
