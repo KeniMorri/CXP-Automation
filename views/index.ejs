@@ -38,6 +38,11 @@
 	<br/>
 	<button id='fillBob' type="button"><h2>Fill bob</h2></button>
 	<button id='fillMeal' type="button"><h2>Fill meal</h2></button>
+	<br/>
+	<button id='searchForFlights' type="button"><h2>search</h2></button>
+	<button id='skipProto' type="button"><h2>skip</h2></button>
+	<button id='saveProto' type="button"><h2>save</h2></button>
+	<button id='resetProto' type="button"><h2>reset</h2></button>
 	
 	
 
@@ -123,6 +128,18 @@
       })
 	$('#CheckFlight').click(function() {
 		sockets.emit('CheckFlight', window.location.href, "");
+	})
+	$('#searchForFlights').click(function() {
+		sockets.emit('searchForFlights', window.location.href, "");
+	})
+	$('#skipProto').click(function() {
+		sockets.emit('skipProto', window.location.href, "");
+	})
+	$('#saveProto').click(function() {
+		sockets.emit('saveProto', window.location.href, "");
+	})
+	$('#resetProto').click(function() {
+		sockets.emit('resetProto', window.location.href, "");
 	})
 		
     sockets.on('fav', function(val) {

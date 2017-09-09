@@ -20,6 +20,8 @@ var session      = require('express-session');
 var Login = require('./private/login.js');
 var Url = require('./private/url.js');
 
+var Prototype = require('./prototype.js');
+
 
 var debug = require('debug')('Muri');
 
@@ -63,7 +65,8 @@ var cyFiles = { '1402' : 'AC1402CY' ,
  '1404' : 'AC1404CY' ,
  '1405' : 'AC1405CY' ,
  '1406' : 'AC1406CY' ,
- '1407' : 'AC1407CY' };
+ '1407' : 'AC1407CY' ,
+ '1408' : 'AC1408CY'  };
 
  
 var PAX = []
@@ -110,6 +113,8 @@ console.log('tomorrowsDate ' + tomorrowsDate + '%%%%');
 console.log('tomorrowFileSearchDate ' + tomorrowFileSearchDate + '%%%%' + currDate);
 console.log('todayslash ' + todaySlashFormat + '%%%%' + formattedTodayDate);
 console.log('tmwslash ' + tomorrowSlashFormat + '%%%%' + formattedTmwDate);
+
+Prototype.init(tomorrowSlashFormat);
 
 
 var gfs = require('fs');
@@ -251,8 +256,9 @@ app.get('/', function(req, res) {
 				//console.log("successfully entered flight overview");
 			})
 			.catch(function (error) {
+				diffController();
 				console.error('loadSalesPlantAndFlight failed due to: ', error);
-				rebootNightmare();
+				//rebootNightmare();
 				//return nightmare.end();
 		});
 	}
@@ -285,6 +291,7 @@ app.get('/', function(req, res) {
 				//console.log("successfully entered flight overview");
 			})
 			.catch(function (error) {
+				diffController();
 				console.error('findRow failed due to: ', error);
 		});
 	}
@@ -2207,8 +2214,11 @@ io.sockets.on('connection', function(socket) {
 		gfs.appendFileSync('./PilotCrewFiles/SPML' + todayFileDate + '.json', '\n\n' , 'utf-8');
 	})
 	socket.on('startDiff', function() {
+		console.log('What I have to work with');
+		console.log(currUpdatedFile);
+		console.log('-');
+		console.log(currDiff);
 		currFlightList = [];
-		currUpdatedFile = currDiff;
 		for(var key in currDiff) {
 				currFlightList.push(key);
 				console.log('key is:' + key);
@@ -2219,6 +2229,7 @@ io.sockets.on('connection', function(socket) {
 		console.log('CurrUpdatedfile');
 		console.log(currUpdatedFile);
 		//diffController();
+		
 	})
 	socket.on('nextDiff', function() {
 		diffController();
@@ -2268,6 +2279,18 @@ io.sockets.on('connection', function(socket) {
 
 	socket.on('debug', function() {
 		socket.emit('debug', 'Message Received in app.js');
+	})
+	socket.on('searchForFlights', function() {
+		Prototype.searchController();
+	})
+	socket.on('skipProto', function() {
+		Prototype.skip();
+	})
+	socket.on('saveProto', function() {
+		Prototype.save();
+	})
+	socket.on('resetProto', function() {
+		Prototype.hardReset();
 	})
 
 	socket.on('disconnect', function() {
@@ -2327,13 +2350,13 @@ var minion = function(passed) {
 var firstLogin = function(cb) {
 	debug('firstLogin');
 	console.log('Scafolding nightmare');
-	/*
+	
 	nightmare = Nightmare({
-		show: true,
+		show: false,
 		typeInterval: 20
 	})
-	*/
 	
+	/*
 	nightmare = Nightmare({
 		show: true,
 		typeInterval: 20,
@@ -2345,7 +2368,7 @@ var firstLogin = function(cb) {
 			mode: 'detach'
 		}
 	})
-	
+	*/
 	nightmare
 		.viewport(1000, 800)
 		.goto(Url.loginUrl)

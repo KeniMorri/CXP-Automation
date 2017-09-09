@@ -4,6 +4,8 @@ PilotCrewFiles
 CREWOUT
 PASSENGERS
 private
+RunServer.bat
+
 
 # Logs
 logs
