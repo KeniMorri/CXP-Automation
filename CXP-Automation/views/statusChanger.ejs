@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <title>Flight Status Changer</title>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2> Flight Status Changer</h2>
+Sales Plant:
+<select name="salesPlant" id='salesPlant'>
+    <option value="1401">1401</option>
+    <option value="1402">1402</option>
+    <option value="1403">1403</option>
+    <option value="1404">1404</option>
+    <option value="1405">1405</option>
+    <option value="1406">1406</option>
+    <option value="1407">1407</option>
+    <option value="1408">1408</option>
+    <option value="1409">1409</option>
+  </select>
+ <br/>
+Status:
+<input type="radio" name="statusVal" value="prelim" checked> Prelim
+<input type="radio" name="statusVal" value="final"> Final
+<br/>
+Date:
+<input type="date" id='flightDate'>
+<br/>
+AirLineCode:
+<input type="text" id='airline'>
+<br/>
+<input type="checkbox" id='double' checked> Change double cater status too?
+<br/>
+Flights:
+<br/>
+<textarea rows="10" cols="40" id='flights'>
+</textarea>
+<br/>
+<button id='start' type="button"><h2>Open Automated Browser</h2></button>
+<button id='load' type="button"><h2>Load Flights</h2></button>
+<button id='change' type="button"><h2>Start Status Changer</h2></button>
+	</div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+<script>
+    sockets.emit('name', 'Status Changer');
+
+    $('#start').click(function() {
+		sockets.emit('StatusBrowser');
+	})
+    
+	$('#load').click(function() {
+		var salesPlantVal = document.getElementById('salesPlant').value;
+		
+		var statusValue;
+		var radios = document.getElementsByName('statusVal');
+		for (var i = 0, length = radios.length; i < length; i++) {
+		    if (radios[i].checked) {
+		        // do whatever you want with the checked radio
+		        statusValue = radios[i].value;
+	        // only one radio can be logically checked, don't check the rest
+	        break;
+		    }
+		}
+
+		var datu = document.getElementById('flightDate').value;
+
+		var flightsList = document.getElementById('flights').value;
+
+		var airline = document.getElementById('airline').value;
+
+		var doubleC = document.getElementById('double').checked;
+
+
+
+		sockets.emit('StatusInit', { salesPlant : salesPlantVal, statusValue : statusValue, date : datu, flights : flightsList, doubleC : doubleC, airline : airline});
+	})
+	$('#change').click(function() {
+		sockets.emit('StatusChange');
+	})
+</script>
+
+</body>
+</html>
+

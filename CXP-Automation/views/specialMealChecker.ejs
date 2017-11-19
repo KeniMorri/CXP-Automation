@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <title>Special Meal CheckerV2</title>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2> Special Meal Checker V2 </h2>
+		<button id='Login' type="button"><h3>Init Nightmare</h3></button>
+		<br/>
+		<h2> Passenger Options </h2>
+		<input type="checkbox" value="auto" id='auto'> Auto Boot? 
+		<br/>
+		<button id='setupYYC' type="button"><h3>Setup YYC</h3></button>
+		<button id='setupYVR' type="button"><h3>Setup YVR</h3></button>
+		<button id='setupYYZ' type="button"><h3>Setup YYZ</h3></button>
+		<br/>
+		<button id='nextFlight' type="button"><h3>Start/Next Flight</h3></button>
+		<br/>
+		<button id='addDelay' type="button"><h3>Add Delay</h3></button>
+		<button id='subtractDelay' type="button"><h3>Subtract Delay</h3></button>
+	    </div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+
+<script>
+    sockets.emit('name', 'Special Meal Checker V2');
+	
+	$('#Login').click(function() {
+        sockets.emit('SMCinit', window.location.href, "");
+      })
+	$('#setupYVR').click(function() {
+		sockets.emit('SMCyvr', document.getElementById('auto').checked, "");
+	})
+	$('#setupYYC').click(function() {
+		sockets.emit('SMCyyc', document.getElementById('auto').checked, "");
+	})
+	$('#setupYYZ').click(function() {
+		sockets.emit('SMCyyz', document.getElementById('auto').checked, "");
+	})
+	$('#nextFlight').click(function() {
+		sockets.emit('SMCnext', window.location.href, "");
+	})
+	$('#addDelay').click(function() {
+		sockets.emit('delayMod', true);
+	})
+	$('#subtractDelay').click(function() {
+		sockets.emit('delayMod', false);
+	})
+	
+</script>
+
+</body>
+</html>

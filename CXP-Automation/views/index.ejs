@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <title> CXP Toolkit </title>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <p> Hello and welcome to CXP Toolkit </p>
+        <p> You are currently using CXP Login: <b><%= user %></b> <br/><a href="/loginChange">Click Here to change login/password</a> </p>
+        <p> On this website you'll see various tools to make your life easier </p>
+        <button title="Click to show/hide content" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Show Daily instructions</button>
+        <div id="spoiler" style="display:none">
+		<ul>
+			<li>7AM -> 8AM
+			    <ul>
+			    	<li>Finish flight Addons</li>
+				    <li>Finalize yesterdays YOW/1405 Flights</li>
+				    <li>Send YUL/1402 bob for tomorrow(Email)</li>
+				    <li>Do SPML for YYC</li>
+				    <li>Do SPML for YVR</li>
+				    <li>Do SPML for YYZ</li>
+			    </ul>
+		  	</li>
+		  	<li>8AM -> 9AM
+		  		<ul>
+		  			<li>Upload file for YVR</li>
+		  			<li>Weight and balance</li>
+		  		</ul>
+		  	</li>
+		  	<li>9AM -> 10AM
+		  		<ul>
+		  			<li>Send Detail/Dispatch for YYC/1404 and YOW/1405 (Auto Email)</li>
+		  			<li>Air Georgia Crew Meals</li>
+		  			<li>Euro Stats</li>
+		  		</ul>
+		  	</li>
+		  	<li>10AM -> 11AM
+		  		<ul>
+		  			<li>Meal Stats</li>
+		  		</ul>
+		  	</li>
+		  	<li>11AM -> 12AM
+		  		<ul>
+		  			<li>Send dispatch for YYZ(EMAIL)</li>
+		  			<li>Send detail/dispatch for YVR(Auto Email) </li>
+		  			<li>Upload file for YVR</li>
+		  		</ul>
+		  	</li>
+		  	<li>12AM -> 2AM
+		  		<ul>
+		  			<li>Backup Bob/detail/dispatch for all stations</li>
+		  		</ul>
+		  	</li>
+		  	<li>2AM -> 3AM
+		  		<ul>
+		  			<li>Send bob/detail/dispatch to YWG/1408(Email)</li>
+		  			<li>Send detail/dispatch to YEG/1407(Auto email)</li>
+		  			<li>Check crew meals for stations 1402 -> 1409</li>
+		  		</ul>
+		  	</li>
+		  </ul>
+		</div>
+		
+    </div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

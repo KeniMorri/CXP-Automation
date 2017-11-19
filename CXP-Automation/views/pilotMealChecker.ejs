@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <title>Pilot Meal Checker V2</title>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2> Pilot Meal Checker V2 </h2>
+		<button id='setupPilot' type="button"><h3>Setup Pilot</h3></button>
+		<button id='setupPilotYYZ' type="button"><h3>Setup Pilot for YYZ</h3></button>
+		<br/>
+		<button id='nextPilotFlight' type="button"><h3>Next Pilot</h3></button>
+		<button id='skipPilotFlight' type="button"><h3>Skip Pilot</h3></button>
+	</div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+<script>
+    sockets.emit('name', 'Pilot Meal Checker V2');
+	
+	$('#setupPilot').click(function() {
+		sockets.emit('Pinit', false, "");
+	})
+	$('#setupPilotYYZ').click(function() {
+		sockets.emit('Pinit', 'YYZ', "");
+	})
+	$('#nextPilotFlight').click(function() {
+		sockets.emit('Pnext', window.location.href, "");
+	})
+	$('#skipPilotFlight').click(function() {
+		sockets.emit('Pskip', window.location.href, "");
+	})
+</script>
+
+</body>
+</html>
+

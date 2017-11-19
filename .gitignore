@@ -1,10 +1,21 @@
 #Private Login
-PassengerFiles
-PilotCrewFiles
-CREWOUT
-PASSENGERS
-private
-RunServer.bat
+*PassengerFiles
+*PilotCrewFiles
+*CREWOUT
+*PASSENGERS
+*private
+*RunServer.bat
+*RunServerV2.bat
+*Text-Parsers
+/Archive/ADVMatLogs/*
+/Archive/ADVMealLogs/*
+/Archive/MealStats/*
+/Archive/PassengerSPML/*
+/Archive/PilotSPML/*
+/Archive/PassengerSPML.xlsx
+/Node
+*.xlsx
+
 
 
 # Logs
@@ -37,7 +48,7 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+*node_modules
 jspm_packages
 
 # Optional npm cache directory
@@ -56,3 +67,12 @@ jspm_packages
 .yarn-integrity
 
 *.lnk
+CXP-Automation/AdvancedMaterialUpdater/advMaterialInput.json
+CXP-Automation/AdvancedMealUpdater/advDataInput.json
+CXP-Automation/simple/dataInput.json
+CXP-Automation/Utility/euroData.json
+CXP-Automation/Utility/euroFlights.json
+CXP-Automation/Utility/outputData.json
+CXP-Automation/MealStats/FOPSMEALNEW.TXT
+CXP-Automation/MealStats/IFSMEALNEW.TXT
+CXP-Automation/MealStats/mealData.json

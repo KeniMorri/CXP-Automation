@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <title>Login Changer</title>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <form action="/loginChange" method="post">
+		  Login:<br>
+		  <input type="text" name="login" id='login'>
+		  <br>
+		  Password:<br>
+		  <input type="text" name="password" id='password'>
+		  <br><br>
+		  <input type="submit" value="Submit">
+		</form> 
+	</div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
+

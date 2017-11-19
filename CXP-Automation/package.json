@@ -1,0 +1,23 @@
+{
+  "name": "cxpAutomation",
+  "version": "0.0.2",
+  "dependencies": {
+    "express": "4.15.3",
+    "ejs": "2.5.6",
+    "mongoose": "4.10.8",
+    "cookie-parser": "1.4.3",
+    "method-override": "2.3.9",
+    "express-session": "1.15.3",
+    "cheerio": "1.0.0-rc.1",
+    "nightmare": "2.10.0",
+    "q": "latest",
+    "socket.io": "~2.0.1",
+    "node-schedule": "1.2.3",
+    "body-parser": "latest"
+  },
+  "author": "Kenny Nguyen <kenimorri@gmail.com>",
+  "description": "Muri Web Reader prototype",
+  "devDependencies": {
+    "electron": "1.7.9"
+  }
+}

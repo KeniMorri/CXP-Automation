@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <title>Utilities</title>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+       <h1>Flight counter</h1>
+Sales Plant:
+<select name="salesPlant" id='salesPlant'>
+    <option value="1401">1401</option>
+    <option value="1402">1402</option>
+    <option value="1403">1403</option>
+    <option value="1404">1404</option>
+    <option value="1405">1405</option>
+    <option value="1406">1406</option>
+    <option value="1407">1407</option>
+    <option value="1408">1408</option>
+    <option value="1409">1409</option>
+  </select>
+ <br/>
+Ignore:
+<input type="checkbox" id='one'> Prelim
+<input type="checkbox" id='two'> Final
+<input type="checkbox" id='three'> Closed
+<input type="checkbox" id='four'> Confirmed
+<input type="checkbox" id='five'> Cancelled BP
+<input type="checkbox" id='six'> Cancelled AP
+<input type="checkbox" id='seven'> Cancelled AC
+<input type="checkbox" id='eight' checked> No-OP
+<br/>
+Date Start:
+<input type="date" id='dateStart'>
+Date End:
+<input type="date" id='dateEnd'>
+<br/>
+AirLineCode:
+<input type="text" id='airline'>
+<br/>
+<button id='startCount' type="button"><h4>startCount</h4></button>
+
+<br/>
+EuroFlights
+<button id='euro' type="button"><h4>run</h4></button>
+<button id='euroRun' type="button"><h4>run2</h4></button>
+<br/>
+<button id='mealStats' type="button"><h4>parseMealStats</h4></button>
+	    </div>
+
+<iframe src="http://ca.cxp.gg.group/portal/home.do" style="width:100%; height: 600px"></iframe>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+<script>
+    sockets.emit('name', 'Status Changer');
+	$('#startCount').click(function() {
+		var salesPlantVal = document.getElementById('salesPlant').value;
+
+		var  one = document.getElementById('one').checked;
+		var  two = document.getElementById('two').checked;
+		var  three= document.getElementById('three').checked;
+		var  four = document.getElementById('four').checked;
+		var  five = document.getElementById('five').checked;
+		var  six = document.getElementById('six').checked;
+		var  seven = document.getElementById('seven').checked;
+		var  eight = document.getElementById('eight').checked
+
+		var dateStart = document.getElementById('dateStart').value;
+		var dateEnd = document.getElementById('dateEnd').value;
+
+		var airline = document.getElementById('airline').value;
+
+
+
+		sockets.emit('flightCount', { salesPlant : salesPlantVal, dateStart : dateStart, dateEnd : dateEnd, airline : airline,
+			one : one, two : two, three : three, four : four, five : five, six : six, seven : seven, eight : eight});
+	})
+	$('#euro').click(function() {
+        sockets.emit('euroStats', window.location.href, "");
+    })
+    $('#euroRun').click(function() {
+        sockets.emit('euroStats2', window.location.href, "");
+    })
+    $('#mealStats').click(function() {
+        sockets.emit('mealStats', window.location.href, "");
+    })
+</script>
+
+</body>
+</html>

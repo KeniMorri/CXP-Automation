@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+    <title>Get Reports</title>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2> Get Reports</h2>
+		<button id='init' type="button"><h2>Init Nightmare</h2></button>
+		<h4> 7:00 AM </h4>
+		<button id='getYULBob' type="button">Get YUL/1402 Bob/summary</button>
+		<h4> 9:00 AM </h4>
+		<button id='getYOWDetail' type="button">Get YOW/1405 Detail</button>
+		<button id='getYOWDispatch' type="button">Get YOW/1405 Dispatch</button>
+		<br/>
+		<button id='getYYCDetail' type="button">Get YYC/1404 Detail</button>
+		<button id='getYYCDispatch' type="button">Get YYC/1404 Dispatch</button>
+		<h4> 11:15 AM </h4>
+		<button id='getYVRDetail' type="button">Get YVR/1403 Detail</button>
+		<button id='getYVRDispatch' type="button">Get YVR/1403 Dispatch</button>
+		<br/>
+		<button id='getYYZDispatch' type="button">Get YYZ/1401 Dispatch</button>
+		<br/>
+		<h4> 2:25 PM </h4>
+		<button id='getYWGBob' type="button">Get YWG/1408 Bob/summary</button>
+		<button id='getYWGDetail' type="button">Get YWG/1408 Detail</button>
+		<button id='getYWGDispatch' type="button">Get YWG/1408 Dispatch</button>
+		<br/>
+		<button id='getYEGDetail' type="button">Get YEG/1407 Detail</button>
+		<button id='getYEGDispatch' type="button">Get YWG/1407 Dispatch</button>
+	</div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+<script>
+	var todaysDate = new Date();
+	var tomorrowsDate = new Date(new Date().getTime()  + 24 * 60 * 60 * 1000 );
+	var tomorrowSlashFormat = (tomorrowsDate.getMonth() + 1) + "/" +(tomorrowsDate.getDate()) + "/" +  (tomorrowsDate.getFullYear().toString()).substring(2,4);
+
+
+	$('#init').click(function() {
+		sockets.emit('initReport');
+	})
+	//7
+	$('#getYULBob').click(function() {
+		sockets.emit('getBob', {salesPlant : '1402', date : tomorrowSlashFormat});
+	})
+	//9
+	$('#getYOWDetail').click(function() {
+		sockets.emit('getDetail', {salesPlant : '1405', date : tomorrowSlashFormat});
+	})
+	$('#getYOWDispatch').click(function() {
+		sockets.emit('getDispatch', {salesPlant : '1405', date : tomorrowSlashFormat});
+	})
+	$('#getYYCDetail').click(function() {
+		sockets.emit('getDetail', {salesPlant : '1404', date : tomorrowSlashFormat});
+	})
+	$('#getYYCDispatch').click(function() {
+		sockets.emit('getDispatch', {salesPlant : '1404', date : tomorrowSlashFormat});
+	})
+	//11
+	$('#getYVRDetail').click(function() {
+		sockets.emit('getDetail', {salesPlant : '1403', date : tomorrowSlashFormat});
+	})
+	$('#getYVRDispatch').click(function() {
+		sockets.emit('getDispatch', {salesPlant : '1403', date : tomorrowSlashFormat});
+	})
+	$('#getYYZDispatch').click(function() {
+		sockets.emit('getDispatch', {salesPlant : '1401', date : tomorrowSlashFormat});
+	})
+	//2
+	$('#getYWGBob').click(function() {
+		sockets.emit('getBob', {salesPlant : '1408', date : tomorrowSlashFormat});
+	})
+	$('#getYWGDetail').click(function() {
+		sockets.emit('getDetail', {salesPlant : '1408', date : tomorrowSlashFormat});
+	})
+	$('#getYWGDispatch').click(function() {
+		sockets.emit('getDispatch', {salesPlant : '1408', date : tomorrowSlashFormat});
+	})
+	$('#getYEGDetail').click(function() {
+		sockets.emit('getDetail', {salesPlant : '1407', date : tomorrowSlashFormat});
+	})
+	$('#getYEGDispatch').click(function() {
+		sockets.emit('getDispatch', {salesPlant : '1407', date : tomorrowSlashFormat});
+	})
+</script>
+
+</body>
+</html>
+

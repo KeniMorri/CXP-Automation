@@ -1,0 +1,25 @@
+<!-- views/partials/footer.ejs -->
+ <div id="chatbox" style="height: 400px; overflow-y: scroll">
+ 	<p> <b>Console Log</b> </p>
+ </div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var sockets = io.connect('http://127.0.0.1:80');
+	sockets.on('consolelog', function(msg) {
+		console.log(msg);
+		var tmp = document.createElement('div');
+		tmp.innerText = msg;
+		document.getElementById('chatbox').insertBefore(tmp, document.getElementById('chatbox').firstElementChild);
+		//document.getElementById('chatbox').appendChild(tmp);
+	})
+
+	sockets.on('boldlog', function(msg) {
+		console.log(msg);
+		var tmp = document.createElement('b');
+		tmp.innerText = msg;
+		document.getElementById('chatbox').insertBefore(tmp, document.getElementById('chatbox').firstElementChild);
+		//document.getElementById('chatbox').appendChild(tmp);
+	})
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<p class="text-center text-muted">© Copyright 2017 Kouhi~</p>

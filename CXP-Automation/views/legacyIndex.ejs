@@ -39,17 +39,30 @@
 	<button id='fillBob' type="button"><h2>Fill bob</h2></button>
 	<button id='fillMeal' type="button"><h2>Fill meal</h2></button>
 	<br/>
-	<button id='searchForFlights' type="button"><h2>search</h2></button>
-	<button id='skipProto' type="button"><h2>skip</h2></button>
+	<button id='startProto' type="button"><h2>start</h2></button>
+	<button id='searchForFlights' type="button"><h2>search/next</h2></button>
+	<br/>
 	<button id='saveProto' type="button"><h2>save</h2></button>
+	<button id='skipProto' type="button"><h2>skip</h2></button>
 	<button id='resetProto' type="button"><h2>reset</h2></button>
+	<br/>
+	<button id='startQty' type="button"><h2>Init Quantity Update</h2></button>
+	<button id='nextQty' type="button"><h2>search/next</h2></button>
+	<button id='skipQty' type="button"><h2>skip</h2></button>
+	<button id='resetQty' type="button"><h2>reset</h2></button>
+	<br/>
+	<button id='saveQty' type="button"><h2>save</h2></button>
+	<br/>
+	<button id='openWave' type="button"><h2>Open</h2></button>
+	<button id='fillWave' type="button"><h2>Fill</h2></button>
 	
 	
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-    var sockets = io.connect('localhost:8080');
+    var sockets = io.connect('localhost');
+    sockets.emit('name', 'Legacy Index');
 	
 	$('#Login').click(function() {
         sockets.emit('Login', window.location.href, "");
@@ -141,6 +154,33 @@
 	$('#resetProto').click(function() {
 		sockets.emit('resetProto', window.location.href, "");
 	})
+	$('#startProto').click(function() {
+		sockets.emit('startProto', window.location.href, "");
+	})
+
+	$('#startQty').click(function() {
+		sockets.emit('startQty', window.location.href, "");
+	})
+	$('#nextQty').click(function() {
+		sockets.emit('nextQty', window.location.href, "");
+	})
+	$('#skipQty').click(function() {
+		sockets.emit('skipQty', window.location.href, "");
+	})
+	$('#resetQty').click(function() {
+		sockets.emit('resetQty', window.location.href, "");
+	})
+	$('#saveQty').click(function() {
+		sockets.emit('saveQty', window.location.href, "");
+	})
+
+	$('#openWave').click(function() {
+		sockets.emit('openWave', window.location.href, "");
+	})
+	$('#fillWave').click(function() {
+		sockets.emit('fillWave', window.location.href, "");
+	})
+
 		
     sockets.on('fav', function(val) {
 	

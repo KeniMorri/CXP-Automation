@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+   	<title>Advanced Material Updater</title>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h2> Advanced Material Updater </h2>
+		<button id='init' type="button"><h3>Initialize</h3></button>
+		<br/>
+		<input type="checkbox" value="auto" id='auto'> Auto Save
+		<input type="checkbox" value="scramble" id='scramble' checked> Scramble Search
+		<br/>
+		<button id='next' type="button"><h3>Start/Next</h3></button>
+		<button id='save' type="button"><h3>Save</h3></button>
+		<button id='skip' type="button"><h3>Skip</h3></button>
+		<br/>
+		<button id='toggle' type="button"><h3>Toggle Auto Save</h3></button>
+		<br/>
+		<h4> Duplicate flights Option </h4>
+		<button id='selectOne' type="button"><h3>Select First</h3></button>
+		<button id='selectTwo' type="button"><h3>Select Second</h3></button>
+	</div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+
+<script>
+    sockets.emit('name', 'Advanced Meal Checker');
+    
+	$('#init').click(function() {
+		sockets.emit('ADMinit', window.location.href, "");
+	})
+	$('#next').click(function() {
+		sockets.emit('ADMnext', { autoSave : document.getElementById('auto').checked, scramble : document.getElementById('scramble').checked }, "");
+	})
+	document.getElementById('auto').checked
+	$('#save').click(function() {
+		sockets.emit('ADMsave', window.location.href, "");
+	})
+	$('#skip').click(function() {
+		sockets.emit('ADMskip', window.location.href, "");
+	})
+	$('#selectOne').click(function() {
+		sockets.emit('ADMselectRow', 0, "");
+	})
+	$('#selectTwo').click(function() {
+		sockets.emit('ADMselectRow', 1, "");
+	})
+	$('#toggle').click(function() {
+		sockets.emit('ADMtoggle', '', "");
+	})
+</script>
+
+</body>
+</html>
+
